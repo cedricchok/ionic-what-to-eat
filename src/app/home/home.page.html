@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      What to eat today ?
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item *ngIf="categories">
+    <ion-label>Categories</ion-label>
+    <ion-select
+        placeholder="Select a category"
+        [(ngModel)]="selectedCategory"
+        (ionChange)="loadData()">
+      <ion-select-option
+          *ngFor="let category of categories"
+          [value]="category">
+        {{ category }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid *ngIf="meals">
+    <ion-row>
+      <ion-col *ngFor="let meal of meals"
+               size="6" [routerLink]="['/meal', meal.idMeal]">
+        <img [src]="meal.strMealThumb"/>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
