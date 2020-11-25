@@ -29,14 +29,7 @@ souscrites dans une variable (meal ici)
       <ion-list-header>
         <ion-label>Ingredients</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let ingredient of ingredients">{{ ingredient }}</ion-item>
-    </ion-list>
-
-    <ion-list>
-      <ion-list-header>
-        <ion-label>Measures</ion-label>
-      </ion-list-header>
-      <ion-item *ngFor="let measure of measures">{{ measure }}</ion-item>
+      <ion-item *ngFor="let iam of ingredientsAndMeasures">{{ iam }}</ion-item>
     </ion-list>
   </ion-content>
 

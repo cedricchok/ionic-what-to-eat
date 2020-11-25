@@ -15,8 +15,7 @@ export class MealPage implements OnInit {
 
   mealId: string;
   meal$: Observable<MEALDB_Meal>; // $ est une convention de nommage pour les observables
-  ingredients: string[];
-  measures: string[];
+  ingredientsAndMeasures: string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,8 +30,7 @@ export class MealPage implements OnInit {
       .pipe(
         tap((meal) => {
           console.log('ok');
-          this.ingredients = this.getIngredientsArray(meal);
-          this.measures = this.getMeasuresArray(meal);
+          this.ingredientsAndMeasures = this.getIngredientsAndMeasuresArray(meal);
         })
       );
 
@@ -48,21 +46,11 @@ export class MealPage implements OnInit {
     );
   }
 
-  private getIngredientsArray(meal: MEALDB_Meal): string[] {
+  private getIngredientsAndMeasuresArray(meal: MEALDB_Meal): string[] {
     const result: string[] = [];
     for (let i = 1; i <= 20; i++) {
-      const value: string = meal['strIngredient' + i];
-      if (value !== '') {
-        result.push(value);
-      }
-    }
-    return result;
-  }
-
-  private getMeasuresArray(meal: MEALDB_Meal): string[] {
-    const result: string[] = [];
-    for (let i = 1; i <= 20; i++) {
-      const value: string = meal['strMeasure' + i];
+      const value: string =
+        meal['strIngredient' + i] + ' ' + meal['strMeasure' + i];
       if (value !== '') {
         result.push(value);
       }
